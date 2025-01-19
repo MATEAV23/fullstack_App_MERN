@@ -10,5 +10,4 @@ export async function createProject(formData: ProjectFormData) {
         console.log(error)
     }
 
-    // Revisar
 }
