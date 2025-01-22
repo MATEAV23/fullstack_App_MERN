@@ -1,12 +1,9 @@
 import type { Request, Response } from 'express'
 import Project from '../models/Project'
-import { error } from 'node:console'
 
 export class ProjectController {
 
     static createProject = async (req: Request, res: Response) => {
-
-
 
         try {
             await Project.create(req.body)

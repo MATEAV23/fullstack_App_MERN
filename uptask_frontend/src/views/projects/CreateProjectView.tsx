@@ -20,10 +20,11 @@ const CreateProjectView = () => {
 
     const {mutate} = useMutation({
         mutationFn: createProject,
-        onError: () => {
-
+        onError: (error) => {
+            toast.error(error.message)
         },
         onSuccess: (data) => {
+            console.log('Desde onSuccess')
             toast.success(data)
             navigate('/')
         }
