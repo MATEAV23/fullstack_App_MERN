@@ -10,5 +10,5 @@ export async function createProject(formData: ProjectFormData) {
         console.log(error)
     }
 
-    // Habilitar Cors
+    
 }
