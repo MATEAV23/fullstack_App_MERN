@@ -8,7 +8,7 @@ const EditProjectView = () => {
     const params = useParams()
     const projectId = params.projectId!
 
-    const { data, isLoading, error, isError } = useQuery({
+    const { data, isLoading, isError } = useQuery({
         queryKey: ['editProject', projectId],
         queryFn: () => getProjectById(projectId),
         retry: false
