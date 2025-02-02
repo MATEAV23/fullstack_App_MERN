@@ -21,7 +21,7 @@ const EditTaskData = () => {
 
     console.log(data)
 
-  if(data) return <EditTaskModal/>
+  if(data) return <EditTaskModal data={data}/>
 }
 
 export default EditTaskData
