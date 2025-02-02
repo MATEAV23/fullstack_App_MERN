@@ -19,3 +19,4 @@ export async function createTask({formData, projectId} : Pick<TaskAPI, 'formData
         }
     }
 }
+
