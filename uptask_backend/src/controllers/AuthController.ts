@@ -33,7 +33,7 @@ export class AuthController {
 
             AuthEmail.sendConfirmationEmail({
                 email: user.email,
-                name: user.email,
+                name: user.name,
                 token: token.token
             })
 
@@ -53,7 +53,7 @@ export class AuthController {
 
             if(!tokenExists) {
                 const error = new Error('Token no valido')
-                return res.status(401).json({error: error.message})
+                return res.status(404).json({error: error.message})
             }
 
             const user = await User.findById(tokenExists.user)
@@ -76,8 +76,26 @@ export class AuthController {
 
             if(!user) {
                 const error = new Error('El usuario no existe')
+                return res.status(404).json({error: error.message})
+            }
+
+            if(!user.confirm) {
+                const token = new Token()
+                token.user = user.id
+                token.token = generateToken()
+                await token.save()
+
+                AuthEmail.sendConfirmationEmail({
+                    email: user.email,
+                    name: user.name,
+                    token: token.token
+                })
+
+                const error = new Error('Tu cuenta no ha sido confirmada, hemos enviado un email con un link de confirmacion')
                 return res.status(401).json({error: error.message})
             }
+
+            console.log(user)
 
         } catch (error) {
             res.status(500).json({error: 'Hubo un error'})
