@@ -1,10 +1,12 @@
 import NewPasswordToken from "@/components/auth/NewPasswordToken"
 import NewPasswordForm from "@/components/auth/NewPasswordForm"
 import { useState } from "react"
+import { ConfirmToken } from "@/types/index"
 
 
 const NewPasswordView = () => {
 
+  const [token, setToken] = useState<ConfirmToken['token']>('')
   const [isValidToken, setIsValidToken] = useState(false)
 
   return (
@@ -15,7 +17,10 @@ const NewPasswordView = () => {
         <span className=" text-fuchsia-500 font-bold"> por e-mail</span>
       </p>
 
-      {!isValidToken ? <NewPasswordToken /> : <NewPasswordForm/>}
+      {!isValidToken ? 
+        <NewPasswordToken token={token} setToken={setToken} setIsValidToken={setIsValidToken}/> : 
+        <NewPasswordForm/>
+      }
     </>
   )
 }
