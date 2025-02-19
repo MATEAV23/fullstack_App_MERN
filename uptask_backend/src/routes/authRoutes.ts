@@ -52,6 +52,13 @@ router.post('/forgot-password',
     AuthController.forgotPassword
 )
 
+router.post('/validate-token',
+    body('token')
+        .notEmpty().withMessage('El token no puede ir vacio'),
+    handleInputErrors,
+    AuthController.validateToken
+)
+
 
 
 

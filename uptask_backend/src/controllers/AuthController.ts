@@ -182,4 +182,21 @@ export class AuthController {
         }
     }
 
+    static validateToken = async (req: Request, res: Response) => {
+        try {
+            const {token } = req.body
+            
+            const tokenExists = await Token.findOne({token})
+
+            if(!tokenExists) {
+                const error = new Error('Token no valido')
+                return res.status(404).json({error: error.message})
+            }
+
+            res.send('Token válido, define tu nuevo password')
+        } catch (error) {
+            res.status(500).json({error: 'Hubo un error'})
+        }
+    }
+
 }
