@@ -74,6 +74,8 @@ export async function validateToken(formData: ConfirmToken) {
     }
 }
 
+// revisando
+
 export async function updatePasswordWithToken({formData, token}: {formData:NewPasswordForm, token:ConfirmToken['token']}) {
     try {
         const url = `/auth/update-password/${token}`
